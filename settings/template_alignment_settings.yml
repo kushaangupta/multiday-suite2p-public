@@ -1,0 +1,39 @@
+# Server settings.
+server:
+  host: 'login2.int.janelia.org'
+  n_cores: 10
+  username: 'user'
+
+# Suite2p cell detection filtering.
+cell_detection:
+  prob_threshold: 0.85 # detected cells need to have a classifier score above this threshold
+  max_size: 1000 # cells with roi above this many pixels are excluded.
+  stripe_borders: [462, 924] # x location of stripe borders(for compatibility)
+  stripe_margin: 30 # cells too close to stripe edge are excluded (can cause registration issues)
+
+# multiday registration through port settings
+registration:
+  img_type: "enhanced_img" #type of image to use for registration
+  grid_sampling_factor: 1 #The grid sampling at the final level.
+  scale_sampling: 20 #The amount of iterations for each level
+  speed_factor: 3 #The relative force of the transform 
+
+# cell mask clustering.
+clustering:
+  criterion: "distance" # criterion used for clustering
+  threshold: 0.75 # Threshold used for clustering algorithm
+  min_sessions_perc: 50 #Exclude masks not present for this percentage of sessions (0-100).
+  min_perc: 50 #Create template based on pixels detected in X% of sesions.
+  step_sizes: [200,200] # clustering happens in these sizes blocks across the plane (for memory reasons)
+  bin_size: 50 # Look for masks around center+bin-size to avoid edge cases
+  min_distance: 20 # only masks with centers within this pixel radius of each other are considered for clustering.
+  min_size_non_overlap: 25 # minimum size of template mask in pixels.
+
+# demixing settings.
+demix:
+  baseline: 'maximin' # baselining method (valid: 'maximin','constant', 'constant_prctile').
+  win_baseline: 60.0 # window (in seconds) for max filter.
+  sig_baseline: 10 # width of Gaussian filter in seconds.
+  l2_reg: 0.1 # l2 regularization.
+  neucoeff: 0.7 # for neuropil subtraction.
+
