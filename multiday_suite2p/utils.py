@@ -27,7 +27,7 @@ def create_mask_img(masks,im_size,field=None,mark_overlap=False,contours=False,c
     if (not field) or  (field=="id"):
         im = np.zeros([im_size[0]*contour_upsampling,im_size[1]*contour_upsampling],np.uint32)
     else:
-        im = np.zeros([im_size[0],im_size[1]],np.float)
+        im = np.zeros([im_size[0],im_size[1]], np.float64)
     for id, mask in enumerate(masks):
         # get value to fill in
         if field:
