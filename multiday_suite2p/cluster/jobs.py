@@ -7,7 +7,7 @@ import numpy as np
 import uuid 
 import re
 
-def extract_job(data_info, settings,data_path, force_recalc=False):
+def extract_job(data_info, settings,data_path, force_recalc=False, bsubargs='', extract_job_path='~/extract_session_job.sh'):
     if (not test_extract_result_present(Path(data_info['data']['local_processed_root'])/data_info['data']['output_folder']/'sessions'/data_path)) | force_recalc:
         multiday_linux = (Path(data_info['data']['server_processed_root'])/data_info['data']['output_folder']).as_posix()
         data_folder = data_info['data']['server_processed_root']
@@ -22,7 +22,7 @@ def extract_job(data_info, settings,data_path, force_recalc=False):
         n_cores = server['n_cores']
         # connect to ssh
         ssh = ssh_connect(server['host'], server['username'], server['password'],verbose=False)
-        run_command =f'bsub -n {n_cores} -J {job_id} -R"select[avx512]" -o logs/extract-{job_id}.txt "~/extract_session_job.sh'
+        run_command =f'bsub -n {n_cores} -J {job_id} {bsubargs} -o logs/extract-{job_id}.txt "{extract_job_path}'
         # arguments.
         run_command+= f' \'{multiday_linux}\''
         run_command+= f' \'{data_folder}\''
