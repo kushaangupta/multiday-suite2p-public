@@ -7,6 +7,17 @@ setup(
     author = 'Johan Winnubst',
     author_email = 'winnubstj@janelia.hhmi.org',
     packages = ['multiday_suite2p'],
-    install_requires = ['jupyter','imageio','pyyaml','scanimage-tiff-reader','suite2p','scikit-image','ipyfilechooser','tqdm','napari','pirt==2.1.0'],
+    install_requires = [
+        'jupyter',
+        'imageio',
+        'pyyaml',
+        'scanimage-tiff-reader',
+        'suite2p==0.10.3',
+        'scikit-image',
+        'ipyfilechooser',
+        'tqdm',
+        'napari',
+        'pirt @ git+https://github.com/kushaangupta/pirt',
+    ],
     zip_safe = False
 )
