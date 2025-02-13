@@ -17,7 +17,7 @@ def transform_points(xpix,ypix, deform):
         [numpy array]               -- transformed point list (y,x order; num_points x 2)
     """
     pp = np.vstack([xpix,ypix]).transpose() 
-    pp = pp.astype(np.float)
+    pp = pp.astype(np.float64)
     v = deform.get_field_in_points(pp,1)
     pp[:,0]-=v
     v = deform.get_field_in_points(pp,0)
