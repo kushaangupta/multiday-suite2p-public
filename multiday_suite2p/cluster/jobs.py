@@ -22,7 +22,7 @@ def extract_job(data_info, settings,data_path, force_recalc=False, bsubargs='', 
         n_cores = server['n_cores']
         # connect to ssh
         ssh = ssh_connect(server['host'], server['username'], server['password'],verbose=False)
-        run_command =f'bsub -n {n_cores} -J {job_id} {bsubargs} -o logs/extract-{job_id}.txt "{extract_job_path}'
+        run_command =f'bsub -n {n_cores} -J {job_id} {bsubargs} -o logs/extract-{job_id}.txt "source {extract_job_path}'
         # arguments.
         run_command+= f' \'{multiday_linux}\''
         run_command+= f' \'{data_folder}\''
@@ -84,7 +84,7 @@ def extract_job_slurm(data_info, settings, data_path, force_recalc=False, sbatch
         n_cores = server['n_cores']
         # connect to ssh
         ssh = ssh_connect(server['host'], server['username'], server['password'], verbose=True)
-        run_command = f'sbatch -n {n_cores} -J "{job_id}" {sbatchargs} -o "logs/extract-{job_id}.txt" --wrap="{extract_job_path}'
+        run_command = f'sbatch -n {n_cores} -J "{job_id}" {sbatchargs} -o "logs/extract-{job_id}.txt" --wrap="source {extract_job_path}'
         # arguments.
         run_command += f" '{multiday_linux}'"
         run_command += f" '{data_folder}'"
