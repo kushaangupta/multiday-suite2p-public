@@ -66,14 +66,14 @@ def extract_traces_session(multiday_folder,data_folder,bin_folder,data_path):
     ops_combined['allow_overlap'] = True
     # create masks in global view
     print('\nCreating masks')
-    cell_masks, neuropil_masks = create_masks(ops_combined, stats_combined)
+    cell_masks, neuropil_masks = create_masks(stats_combined, ops_combined['Ly'], ops_combined['Lx'], ops_combined)
     # extract traces in global view
     print('\nExtracting traces')
     with BinaryFileCombined(LY, LX, Ly, Lx, dy, dx, reg_loc) as f:    
-        F, Fneu, ops = extract_traces(ops_combined, cell_masks, neuropil_masks, f)
+        F, Fneu = extract_traces(f, cell_masks, neuropil_masks, ops_combined["batch_size"])
     
     # save files.
     print(f"\nSaving results in {save_folder}..")
-    np.save(save_folder/'ops.npy', ops)
+    np.save(save_folder/'ops.npy', ops_combined)
     np.save(save_folder/'F.npy', F)
     np.save(save_folder/'Fneu.npy', Fneu)
