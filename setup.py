@@ -12,7 +12,7 @@ setup(
         'imageio',
         'pyyaml',
         'scanimage-tiff-reader',
-        'suite2p==0.10.3',
+        'suite2p',
         'scikit-image',
         'ipyfilechooser',
         'tqdm',
