@@ -7,8 +7,8 @@ echo "multiday_folder: $MULTIDAY_FOLDER"
 echo "data_folder: $DATA_FOLDER"
 echo "bin_folder: $BIN_FOLDER"
 echo "data_path: $DATA_PATH"
-source ~/anaconda3/etc/profile.d/conda.sh
-conda activate vr2p
+conda init bash
+conda activate suite2p
 echo $CONDA_DEFAULT_ENV
 result=$(python <<EOF
 from multiday_suite2p.cluster.extract import extract_traces_session
