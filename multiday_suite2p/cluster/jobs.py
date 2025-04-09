@@ -1,4 +1,4 @@
-from multiday_suite2p.cluster.io  import test_extract_result_present
+from .io  import test_extract_result_present
 import uuid 
 import re
 
