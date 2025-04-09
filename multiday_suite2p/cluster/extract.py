@@ -4,8 +4,7 @@ from pathlib import Path
 from suite2p.io import compute_dydx, BinaryFileCombined
 from suite2p.extraction.masks import create_masks
 from suite2p.extraction.extract import extract_traces
-from suite2p.extraction import dcnv
-from multiday_suite2p.process import demix_traces
+
 
 def extract_traces_session(multiday_folder,data_folder,bin_folder,data_path):
     """Main extraction function. Collects traces based on registered masks for one session (for parallelization)

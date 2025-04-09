@@ -1,5 +1,5 @@
-from multiday_suite2p.cluster.io  import test_extract_result_present
-import uuid 
+from .io import test_extract_result_present
+import uuid
 import re
 
 from IPython import get_ipython
